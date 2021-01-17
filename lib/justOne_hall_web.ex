@@ -20,9 +20,10 @@ defmodule JustOneHallWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: JustOneHallWeb
+
       import Plug.Conn
       import JustOneHallWeb.Gettext
-      import JustOneHallWeb.Router.Helpers
+      alias JustOneHallWeb.Router.Helpers, as: Routes
     end
   end
 

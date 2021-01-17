@@ -5,8 +5,8 @@ defmodule JustOneHallWeb.SessionController do
     render(conn, "new.html")
   end
 
-  def create(conn, %{"player" => %{"name" => name, "color" => color}}) do
-    player = JustOne.Player.new(name, color)
+  def create(conn, %{"player" => %{"name" => name}}) do
+    player = JustOne.Player.new(name, "black")
 
     conn
     |> put_session(:current_player, player)
@@ -20,7 +20,7 @@ defmodule JustOneHallWeb.SessionController do
   end
 
   defp redirect_back_or_to_new_game(conn) do
-    path = get_session(conn, :return_to) || game_path(conn, :new)
+    path = get_session(conn, :return_to) || Routes.game_path(conn, :create)
 
     conn
     |> put_session(:return_to, nil)
